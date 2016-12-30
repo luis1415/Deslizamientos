@@ -1,0 +1,59 @@
+ 
+ Starting TopoIndex
+ Version: 1.0.11, 13Mar2013 
+ Date: 12/30/2016
+ Time: 00:35:54
+ 
+ -- LISTING OF INITIALIZATION DATA --
+ TopoIndex 1.0.11; Name of project (up to 255 characters)
+ Tutorial example data for TopoIndex analysis
+ Flow-direction numbering scheme (ESRI=1, TopoIndex=2)
+           2
+ Exponent, Number of iterations
+  -1.00000000              10
+ Name of elevation grid file
+ data/tutorial/dem.asc
+ data/tutorial/directions.asc
+ data/tutorial/directions.asc
+ Save listing of D8 downslope neighbor cells?  Enter T (.true.) or F (.false.)
+ T
+ Save grid of D8 downslope neighbor cells? Enter T (.true.) or F (.false.)
+ T
+ Save cell index number grid?  Enter T (.true.) or F (.false.)
+ T
+ Save list of cell number and corresponding index number? Enter T (.true.) or F (.false.)
+ T
+ Save flow-direction grid remapped from ESRI to TopoIndex? Enter T (.true.) or F (.false.)
+ T
+ Save grid of points on ridge crests? Enter T (.true.) or F (.false.); Sparse (T) or dense (F)?
+ F T
+ Path to elevation grid and output files
+ data/tutorial/
+ ID code for output files? (8 characters or less)
+ tutorial
+ -- END OF INITIALIZATION DATA --
+ 
+ Tutorial example data for TopoIndex analysis
+ 
+ Parameters for file--> data/tutorial/dem.asc
+ Data cells, Rows, Columns
+          99          10          10
+ Reading flow-direction data
+ 
+          Listing of grid mismatches
+ Mismatch counter, Row, Column, Direction code
+           0 ,  --,   --,  --
+ No grid mismatch found!
+ Subroutine nxtcel completed normally
+ iteration           1
+ iteration            1  corrections            1
+ iteration           2
+ iteration            2  corrections            0
+ Parameters for file--> data/tutorial/dem.asc
+ Exponent   -1.00000000    
+ Data cells, Rows, Columns, Downslope cells
+          99          10          10         153
+ 
+ TopoIndex finished normally
+ Date: 12/30/2016
+ Time: 00:35:54
