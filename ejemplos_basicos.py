@@ -29,12 +29,21 @@ def manejo_archivos_txt():
         linea = linea.rstrip("\n")
         linea = linea.replace(".", ",")
         print(linea)
-
     archivo.close()
-
     archivo = open("archivo2.txt", "w")
     archivo.write("hola2")
     archivo.close()
+
+
+def menores_uno(_df, n):
+    valores = []
+    cont = 0
+    for c in range(n):
+        valores.extend(_df[c].values)
+    for j in valores:
+        if j < 1.0 and not(np.isnan(j)):
+            cont += 1
+    return cont
 
 if __name__ == '__main__':
     # leer numero de columnas
@@ -46,4 +55,17 @@ if __name__ == '__main__':
     # pasar las columnas de str a float
     for i in range(ncols):
         df[i] = df[i].astype(float)
-    print(df)
+
+    df = df.replace(-9999, np.nan)
+    minimo = min(df.min())
+    promedio = np.mean(df.mean())
+
+    # uso la función de menores que uno
+    menores = menores_uno(df, ncols)
+    print(menores)
+    total = sum(df.count())
+    print(sum(df.count()))
+    # celdas que fallan porcentaje de area que falla
+    porcentaje = menores/total
+    print(porcentaje)
+
