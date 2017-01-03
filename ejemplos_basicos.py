@@ -9,14 +9,14 @@ def media_df(archivo_csv):
     para hacer el promedio.
     :return:
     """
-    df = pd.read_csv(archivo_csv)
-    print(df)
+    df1 = pd.read_csv(archivo_csv)
+    print(df1)
     # se reemplazan los valores -9999 con NaN
-    df = df.replace(-9999, np.nan)
+    df1 = df1.replace(-9999, np.nan)
     print("-----------------------")
-    print(df)
+    print(df1)
     print("------La Media---------")
-    print(df.mean())
+    print(df1.mean())
 
 
 def manejo_archivos_txt():
@@ -52,6 +52,7 @@ if __name__ == '__main__':
     ncols = int(numero_columnas[0].split()[1])
     df = pd.read_table("TRfs_min_prg_2.asc", sep=' ', names=range(ncols))
     df = df.drop(df.index[[0, 1, 2, 3, 4, 5]])
+
     # pasar las columnas de str a float
     for i in range(ncols):
         df[i] = df[i].astype(float)
@@ -62,10 +63,9 @@ if __name__ == '__main__':
 
     # uso la función de menores que uno
     menores = menores_uno(df, ncols)
-    print(menores)
+    print("Menores que 1: ", menores)
     total = sum(df.count())
-    print(sum(df.count()))
+    print("Total: ", sum(df.count()))
     # celdas que fallan porcentaje de area que falla
     porcentaje = menores/total
-    print(porcentaje)
-
+    print("Porcentaje de celdas que fallan: ", porcentaje)
