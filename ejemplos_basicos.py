@@ -1,6 +1,37 @@
 # -*- coding: utf-8 -*-
 import pandas as pd
 import numpy as np
+import os
+from subprocess import Popen, PIPE
+import fileinput
+import sys
+
+
+def reemplazar(file, searchexp, replaceexp):
+    for linea in fileinput.input(file, inplace=True):
+        if searchexp in linea:
+            linea = linea.replace(searchexp, replaceexp)
+        sys.stdout.write(linea)
+
+intensidad = "4000"
+duracion = "3.e-9"
+reemplazar("tr_in.txt", "3600", intensidad)
+reemplazar("tr_in.txt", "6.e-9", duracion)
+
+'''
+intensidades = []
+cant_intensidades = int(input("ingrese la cantidad de intesidades: "))
+print(type(cant_intensidades))
+
+for i in range(cant_intensidades):
+    intensidades.append(int(input("ingrese intensidad: ")))
+
+for k in range(cant_intensidades):
+    print(intensidades[k])
+
+for line in fileinput.input("test.txt", inplace=True):
+    print(line.replace("hola", str(intensidades[0])))
+'''
 
 
 def media_df(archivo_csv):
@@ -69,3 +100,21 @@ if __name__ == '__main__':
     # celdas que fallan porcentaje de area que falla
     porcentaje = menores/total
     print("Porcentaje de celdas que fallan: ", porcentaje)
+
+    # Se cambia de directorio
+    print(os.chdir("trigrs_mpi"))
+
+    # se ejecuta trigrs desde python
+    p = Popen('./trg', shell=True, stdout=PIPE, stderr=PIPE)
+    out, err = p.communicate()
+
+    datos = {'intensidad': [], 'duracion': [], 'fs_minimo': [], 'fs_promedio': [], 'area_falla': []}
+    datos['intensidad'].append(intensidad)
+    datos['duracion'].append(duracion)
+    datos['fs_minimo'] = minimo
+    datos['fs_promedio'] = promedio
+    datos['area_falla'] = porcentaje
+    df = pd.DataFrame(datos)
+    print(df)
+    os.chdir("..")
+    df.to_csv('resultados.csv', mode='a', index=False, header=False)
